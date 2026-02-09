@@ -1,69 +1,63 @@
-// Scene
 const scene = new THREE.Scene();
 
-// Camera
 const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
-camera.position.z = 30;
+camera.position.z = 40;
 
-// Renderer
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
-  alpha: true,
+  alpha: true
 });
-renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 
-// Geometry
-const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+// Main 3D Objects
+const geometry = new THREE.IcosahedronGeometry(10, 1);
 const material = new THREE.MeshStandardMaterial({
-  color: 0x00ffcc,
-  wireframe: true,
+  color: 0x0055ff,
+  wireframe: true
 });
-const torus = new THREE.Mesh(geometry, material);
-scene.add(torus);
+const shape = new THREE.Mesh(geometry, material);
+scene.add(shape);
 
-// Light
-const pointLight = new THREE.PointLight(0xffffff);
-pointLight.position.set(20, 20, 20);
-scene.add(pointLight);
+// Lights
+scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-scene.add(ambientLight);
+const light = new THREE.PointLight(0xff0000, 1);
+light.position.set(20, 20, 20);
+scene.add(light);
 
-// Stars
-function addStar() {
-  const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-  const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-  const star = new THREE.Mesh(geometry, material);
+// Particles
+function particle() {
+  const geo = new THREE.SphereGeometry(0.3, 12, 12);
+  const mat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+  const star = new THREE.Mesh(geo, mat);
 
-  const [x, y, z] = Array(3)
-    .fill()
-    .map(() => THREE.MathUtils.randFloatSpread(200));
-
-  star.position.set(x, y, z);
+  star.position.set(
+    THREE.MathUtils.randFloatSpread(200),
+    THREE.MathUtils.randFloatSpread(200),
+    THREE.MathUtils.randFloatSpread(200)
+  );
   scene.add(star);
 }
-Array(200).fill().forEach(addStar);
+Array(300).fill().forEach(particle);
 
-// Animation
+// Animate
 function animate() {
   requestAnimationFrame(animate);
 
-  torus.rotation.x += 0.005;
-  torus.rotation.y += 0.003;
-  torus.rotation.z += 0.002;
+  shape.rotation.x += 0.002;
+  shape.rotation.y += 0.003;
 
   renderer.render(scene, camera);
 }
-
 animate();
 
-// Responsive
+// Resize
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
