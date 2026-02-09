@@ -1,133 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- =========================
+ SK-DEV FULL PLATFORM
+ Owner: Akin Saye Sokpah
+ GitHub Pages Ready (No Backend)
+========================== --><!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>SK-Dev | Afro-Futuristic Web Studio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Three.js -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
-
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body class="dark">
-
-<button id="themeToggle">🌗</button>
-
-<canvas id="bg"></canvas>
-
-<main>
-
-<!-- HERO -->
-<section class="hero">
-  <h1 class="logo">SK-DEV</h1>
-  <p>Afro-Futuristic • 3D Web • Innovation</p>
-
-  <div class="hero-buttons">
-    <a class="btn primary" href="https://chat.whatsapp.com/JaTMhWxIBM0EY5out6HWLB" target="_blank">
-      Join WhatsApp Community
-    </a>
-    <a class="btn secondary" href="https://wa.me/231777789356" target="_blank">
-      Message Akin
-    </a>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SK-Dev | Afro‑Futuristic Digital Platform</title>  <!-- PWA -->  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0a0a0a" />  <!-- STYLE -->  <link rel="stylesheet" href="style.css" />  <!-- THREE.JS -->  <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script></head>
+<body><!-- LOGIN MODAL --><div id="loginModal" class="modal">
+  <div class="modal-content">
+    <h2>Member Login</h2>
+    <input id="username" placeholder="Username" />
+    <input id="password" type="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
   </div>
-</section>
-
-<!-- ABOUT -->
-<section class="glass">
-  <h2>About SK-Dev</h2>
-  <p>
-    SK-Dev is a next-generation African tech brand building powerful,
-    animated, and high-performance websites for businesses and creators.
-  </p>
-  <p><strong>Founder & Owner:</strong> Akin Saye Sokpah</p>
-</section>
-
-<!-- SERVICES -->
-<section class="glass">
-  <h2>What We Do</h2>
-  <ul>
-    <li>🚀 High-Performance Websites</li>
-    <li>🎨 3D & Animated UI</li>
-    <li>📱 Mobile-First Design</li>
-    <li>⚙️ Custom Business Solutions</li>
-    <li>🤝 Developer Community & Mentorship</li>
-  </ul>
-</section>
-
-<!-- PRICING -->
-<section class="pricing">
-  <h2>Website Packages</h2>
-
-  <div class="pricing-cards">
-
-    <div class="card">
-      <h3>Starter</h3>
-      <p class="price">$50 – $80</p>
-      <ul>
-        <li>1–3 Pages</li>
-        <li>Responsive Design</li>
-        <li>Fast Delivery</li>
-      </ul>
-    </div>
-
-    <div class="card highlight">
-      <h3>Premium</h3>
-      <p class="price">$120 – $180</p>
-      <ul>
-        <li>Modern UI/UX</li>
-        <li>Animations</li>
-        <li>SEO Ready</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Pro</h3>
-      <p class="price">$250+</p>
-      <ul>
-        <li>3D Effects</li>
-        <li>Unlimited Pages</li>
-        <li>Custom Features</li>
-      </ul>
-    </div>
-
+</div><header class="hero">
+  <canvas id="bg3d"></canvas>
+  <h1>SK‑Dev</h1>
+  <p>Afro‑Futuristic Web • Games • Music • Innovation</p>
+  <button onclick="openLogin()">Member Area</button>
+</header><!-- STORE --><section class="glass">
+  <h2>Digital Store 🛒</h2>
+  <div class="grid">
+    <div class="card">Website Starter<br><strong>$50</strong></div>
+    <div class="card">Premium Website<br><strong>$120</strong></div>
+    <div class="card">Pro Platform<br><strong>$250</strong></div>
   </div>
-
-  <a class="btn primary big" href="https://wa.me/231777789356" target="_blank">
-    Chat Akin for Custom Pricing
-  </a>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="glass">
-  <h2>Testimonials</h2>
-  <div class="testimonials">
-    <div class="quote">“SK-Dev built my site fast and clean. Premium work.”</div>
-    <div class="quote">“Best tech community I’ve joined in Africa.”</div>
-    <div class="quote">“The 3D design is insane 🔥🔥”</div>
+</section><!-- PAID CONTENT --><section class="glass">
+  <h2>Exclusive Members Content 🔒</h2>
+  <p id="locked">Login to unlock premium tutorials, downloads & tools.</p>
+  <div id="premium" style="display:none">
+    <a download href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf">Download Premium Guide</a>
   </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact">
-  <h2>Contact SK-Dev</h2>
-  <form onsubmit="sendMessage(event)">
-    <input type="text" id="name" placeholder="Your Name" required>
-    <textarea id="message" placeholder="What do you need?" required></textarea>
-    <button class="btn primary">Send via WhatsApp</button>
-  </form>
-</section>
-
-<footer>
-  <p>© 2026 SK-Dev • Built by Akin Saye Sokpah</p>
-</footer>
-
-</main>
-
-<script src="script.js"></script>
-</body>
+</section><!-- GAME LEADERBOARD --><section class="glass">
+  <h2>Game Leaderboard 🎮</h2>
+  <input id="player" placeholder="Your name" />
+  <input id="score" type="number" placeholder="Score" />
+  <button onclick="saveScore()">Submit</button>
+  <ul id="leaderboard"></ul>
+</section><!-- LIVE CHAT --><section class="glass">
+  <h2>Community Live Chat 💬</h2>
+  <iframe src="https://deadsimplechat.com/Demo" width="100%" height="400"></iframe>
+</section><!-- DONATION --><section class="glass">
+  <h2>Support SK‑Dev ❤️</h2>
+  <p>MoMo: +231889183557</p>
+  <p>UBA: 53020710015394</p>
+  <p>Name: Akin S. Sokpah</p>
+</section><footer>
+  <p>© 2026 SK‑Dev • Built by Akin Saye Sokpah</p>
+</footer><script src="script.js"></script></body>
 </html>
