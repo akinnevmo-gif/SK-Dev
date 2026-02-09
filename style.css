@@ -1,178 +1,81 @@
-:root {
-  --red: #ff1e1e;
-  --blue: #0066ff;
-  --white: #ffffff;
-  --black: #000000;
-
-  --glass: rgba(255, 255, 255, 0.12);
-  --glow-red: 0 0 25px rgba(255, 30, 30, 0.7);
-  --glow-blue: 0 0 30px rgba(0, 102, 255, 0.7);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, var(--black), #050505, #0b0b0b);
-  color: var(--white);
-  transition: 0.4s;
+  background: radial-gradient(circle, #020024, #090979, #000);
+  color: white;
+}
+
+.hero {
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  text-shadow: 0 0 25px red, 0 0 35px blue;
 }
 
 canvas {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: -1;
 }
 
-#themeToggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 10;
-  background: transparent;
-  color: var(--white);
-  border: 2px solid var(--white);
-  border-radius: 50%;
-  padding: 10px;
-  cursor: pointer;
+.glass {
+  margin: 3rem auto;
+  padding: 2rem;
+  width: 90%;
+  max-width: 900px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 25px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 30px rgba(0,0,255,0.4);
 }
 
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.logo {
-  font-size: 4.8rem;
-  font-weight: 700;
-  background: linear-gradient(
-    90deg,
-    var(--red),
-    var(--blue),
-    var(--white),
-    var(--blue),
-    var(--red)
-  );
-  -webkit-background-clip: text;
-  color: transparent;
-  text-shadow: var(--glow-red), var(--glow-blue);
-  animation: pulse 3s infinite alternate;
-}
-
-@keyframes pulse {
-  from { text-shadow: var(--glow-red); }
-  to { text-shadow: var(--glow-blue); }
-}
-
-.hero-buttons {
-  margin-top: 1.5rem;
+.grid {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-}
-
-.btn {
-  padding: 14px 32px;
-  border-radius: 40px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.primary {
-  background: linear-gradient(135deg, var(--red), var(--blue));
-  color: var(--white);
-}
-
-.secondary {
-  border: 2px solid var(--white);
-  color: var(--white);
-}
-
-.btn:hover {
-  transform: scale(1.1);
-  box-shadow: var(--glow-red), var(--glow-blue);
-}
-
-.glass {
-  width: 80%;
-  margin: 4rem auto;
-  padding: 2.5rem;
-  border-radius: 22px;
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.15),
-    rgba(255,255,255,0.05)
-  );
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255,255,255,0.25);
-}
-
-.pricing {
-  text-align: center;
-  padding: 4rem 2rem;
-}
-
-.pricing-cards {
-  display: flex;
   justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
 }
 
 .card {
-  width: 260px;
   padding: 2rem;
-  border-radius: 22px;
-  background: rgba(0,0,0,0.7);
-  border: 1px solid rgba(255,255,255,0.2);
-  transition: 0.4s;
-}
-
-.card:hover {
-  transform: translateY(-12px);
-  box-shadow: var(--glow-blue);
-}
-
-.card.highlight {
-  border: 2px solid var(--red);
-  box-shadow: var(--glow-red);
-}
-
-.price {
-  font-size: 1.6rem;
-  color: var(--blue);
-}
-
-.testimonials {
-  display: grid;
-  gap: 1rem;
-}
-
-.quote {
-  font-style: italic;
-}
-
-.contact {
+  width: 200px;
+  background: linear-gradient(135deg, red, blue);
+  border-radius: 20px;
   text-align: center;
-  padding: 3rem;
 }
 
-.contact input,
-.contact textarea {
-  width: 80%;
-  padding: 12px;
-  margin: 0.5rem 0;
-  border-radius: 12px;
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+}
+
+.modal-content {
+  background: black;
+  padding: 2rem;
+  width: 300px;
+  margin: 15% auto;
+  border-radius: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 25px;
   border: none;
-}
-
-footer {
-  text-align: center;
-  padding: 2rem;
-  opacity: 0.6;
+  background: linear-gradient(135deg, red, blue);
+  color: white;
+  cursor: pointer;
 }
